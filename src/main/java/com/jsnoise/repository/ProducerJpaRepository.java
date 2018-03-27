@@ -8,6 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface ProducerJpaRepository extends JpaRepository<Producer, Long> {
-    @Query("select new com.jsnoise.dto.ProducerListItem(p.id, p.name,  p.website, p.feedUrl, p.isBlocked)  FROM Producer p")
+    @Query("select new com.jsnoise.dto.ProducerListItem(p.id, p.name,  p.website,  p.isBlocked)  FROM Producer p")
     public List<ProducerListItem> getProducers();
 }
