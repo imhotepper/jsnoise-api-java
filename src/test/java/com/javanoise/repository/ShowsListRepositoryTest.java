@@ -1,18 +1,15 @@
 package com.javanoise.repository;
 
-import com.javanoise.dto.ShowListItem;
-import com.javanoise.model.Show;
+import com.jsnoise.dto.ShowListItem;
+import com.jsnoise.repository.ShowJpaRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

@@ -1,10 +1,11 @@
-package com.javanoise.service;
+package com.jsnoise.service;
 
 
-import com.javanoise.model.Producer;
-import com.javanoise.model.Show;
-import com.javanoise.repository.ProducerJpaRepository;
-import com.javanoise.repository.ShowJpaRepository;
+import com.jsnoise.dto.ProducerListItem;
+import com.jsnoise.model.Producer;
+import com.jsnoise.model.Show;
+import com.jsnoise.repository.ProducerJpaRepository;
+import com.jsnoise.repository.ShowJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class JavaNoiseService {
+public class JsNoiseService {
 
     @Autowired
     private ProducerJpaRepository _producersRepo;
@@ -66,5 +67,9 @@ public class JavaNoiseService {
 
         return savedShows.size();
 
+    }
+
+    public List<ProducerListItem> getAll(){
+        return _producersRepo.getProducers();
     }
 }

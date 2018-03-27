@@ -1,8 +1,8 @@
-package com.javanoise.controller;
+package com.jsnoise.controller;
 
 
-import com.javanoise.dto.ShowListItem;
-import com.javanoise.repository.ShowJpaRepository;
+import com.jsnoise.dto.ShowListItem;
+import com.jsnoise.repository.ShowJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +26,7 @@ public class ShowsController {
 
         Page<ShowListItem> sh;
         if (q.isEmpty()) sh = _repository.findAllShows(pg);
+
         else {
             q ="%"+q+"%";
             sh = _repository.findByContains(q,pg);

@@ -1,4 +1,4 @@
-package com.javanoise.model;
+package com.jsnoise.model;
 
 import javax.persistence.*;
 import java.util.Date;

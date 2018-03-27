@@ -1,12 +1,12 @@
-package com.javanoise;
+package com.jsnoise;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JavaNoiseApplication {
+public class JsNoiseApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(JavaNoiseApplication.class, args);
+		SpringApplication.run(JsNoiseApplication.class, args);
 	}
 }

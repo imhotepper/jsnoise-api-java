@@ -1,6 +1,6 @@
-package com.javanoise.service;
+package com.jsnoise.service;
 
-import com.javanoise.model.Show;
+import com.jsnoise.model.Show;
 import com.rometools.rome.feed.synd.SyndEnclosure;
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;

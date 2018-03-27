@@ -1,4 +1,4 @@
-package com.javanoise.model;
+package com.jsnoise.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -53,6 +53,16 @@ public class Producer {
     public void setShows(List<Show> shows) {
         this.shows = shows;
     }
+
+    public Producer(Long id, String name, String website, String feedUrl, boolean isBlocked) {
+        this.id = id;
+        this.name = name;
+        this.website = website;
+        this.feedUrl = feedUrl;
+        this.isBlocked = isBlocked;
+    }
+
+    public Producer(){};
 
     @Id
     @GeneratedValue

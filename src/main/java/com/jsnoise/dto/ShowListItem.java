@@ -1,4 +1,4 @@
-package com.javanoise.dto;
+package com.jsnoise.dto;
 
 import java.util.Date;
 
