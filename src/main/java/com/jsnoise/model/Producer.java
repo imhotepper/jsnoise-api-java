@@ -1,6 +1,9 @@
 package com.jsnoise.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,8 +71,10 @@ public class Producer {
     @GeneratedValue
     private Long id;
 
+    @NotEmpty
     private String name;
 
+    @NotNull
     private String website;
 
     private String feedUrl;

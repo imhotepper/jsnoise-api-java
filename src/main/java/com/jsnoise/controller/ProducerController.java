@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -26,8 +27,9 @@ public class ProducerController {
         _repo = repo;
     }
 
-    @RequestMapping(value = "/api/producers", method = RequestMethod.POST)
-    public String registerProducer(@RequestBody Producer producer){
+   // @RequestMapping(value = "/api/producers", method = RequestMethod.POST)
+    @PostMapping(value = "/api/producers")
+    public String registerProducer(@Valid @RequestBody Producer producer){
       _service.createAndSaveShows(producer);
       return producer.getName();
     }
