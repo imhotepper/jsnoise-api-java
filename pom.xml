@@ -5,7 +5,7 @@
 
 	<groupId>com.example</groupId>
 	<artifactId>jsnoise</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>demo</name>
@@ -86,11 +86,11 @@
 							<goal>unpack-dependencies</goal>
 						</goals>
 						<configuration>
-							<includegroupids>com.newrelic.agent.java</includegroupids>
-							<includeartifactids>newrelic-java</includeartifactids>
-							<overwrite>true</overwrite>
-							<outputdirectory>${project.basedir}</outputdirectory>
-							<destfilename>newrelic</destfilename>
+							<includeGroupIds>com.newrelic.agent.java</includeGroupIds>
+							<includeArtifactIds>newrelic-java</includeArtifactIds>
+							<overWriteIfNewer>true</overWriteIfNewer>
+							<outputDirectory>${project.basedir}</outputDirectory>
+							<destFileName>newrelic</destFileName>
 						</configuration>
 					</execution>
 				</executions>
