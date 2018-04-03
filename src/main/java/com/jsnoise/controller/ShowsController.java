@@ -10,10 +10,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.logging.Logger;
+
 @RestController
 //@RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:8081")
 public class ShowsController {
+
+    Logger _logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     @Autowired
     private ShowJpaRepository _repository;
@@ -23,6 +27,8 @@ public class ShowsController {
     public Page<ShowListItem> showslist(@RequestParam( "page" ) int page, @RequestParam( name = "size", defaultValue = "20") int size,@RequestParam( name="q", defaultValue = "",required = false) String q){
         Sort sort = new Sort(Sort.Direction.DESC,"publishDate");
         Pageable pg  = new PageRequest(page, size, sort);
+
+        _logger.warning("Searching for: " + q);
 
         Page<ShowListItem> sh;
         if (q.isEmpty()) sh = _repository.findAllShows(pg);
