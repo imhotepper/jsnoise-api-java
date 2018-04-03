@@ -8,8 +8,8 @@
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>jsnoise</name>
+	<description>JSNoise project with Spring Boot</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
