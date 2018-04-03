@@ -23,6 +23,8 @@ public class ShowListItem {
 
     long producerId;
     String title;
+
+
     String description;
     String mp3;
     String producerName;
@@ -36,6 +38,10 @@ public class ShowListItem {
     public String getTitle() {
         return title;
     }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
     public String getDescription() {
         return description;

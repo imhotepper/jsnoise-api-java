@@ -12,7 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+//@SpringBootTest()
 public class ShowsListRepositoryTest {
 
     @Autowired
@@ -22,7 +22,7 @@ public class ShowsListRepositoryTest {
     public void findByTitleOrDescription() {
         String q1 = "DeMarco";
         String q ="%"+ q1 +"%";
-        Page<ShowListItem> items = _repo.findByContains( q, new PageRequest(0,10));
+        Page<ShowListItem> items = _repo.getFilteredTitle( q, new PageRequest(0,10));
        // Page<ShowListItem> items = _repo.findByContains( q, new PageRequest(0,10));
         Assert.assertNotNull(items);
         Assert.assertTrue(items.getContent().size() > 0);

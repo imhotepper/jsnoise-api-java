@@ -22,11 +22,11 @@ public class ShowsController {
     @Autowired
     private ShowJpaRepository _repository;
 
-    @RequestMapping( value = "/api/showslist", method = RequestMethod.GET )
-    //@GetMapping
-    public Page<ShowListItem> showslist(@RequestParam( "page" ) int page, @RequestParam( name = "size", defaultValue = "20") int size,@RequestParam( name="q", defaultValue = "",required = false) String q){
-        Sort sort = new Sort(Sort.Direction.DESC,"publishDate");
-        Pageable pg  = new PageRequest(page, size, sort);
+   // @RequestMapping( value = "/api/showslist", method = RequestMethod.GET )
+    @GetMapping(value = "/api/showslist")
+    public Page<ShowListItem> showslist(@RequestParam( "page" ) int page, @RequestParam( name = "size", defaultValue = "20") int size,@RequestParam( name="q", defaultValue = "",required = false) String q) {
+        Sort sort = new Sort(Sort.Direction.DESC, "publishDate");
+        Pageable pg = new PageRequest(--page, size, sort);
 
         _logger.warning("Searching for: " + q);
 
@@ -34,9 +34,17 @@ public class ShowsController {
         if (q.isEmpty()) sh = _repository.findAllShows(pg);
 
         else {
-            q ="%"+q+"%";
-            sh = _repository.findByContains(q,pg);
+            q = "%" + q + "%";
+            sh = _repository.getFilteredTitle(q, pg);
         }
+        _logger.info("items found: " + sh.getTotalElements());
+        _logger.info("items size: " + sh.getContent().size());
+
+        for (ShowListItem i : sh.getContent()){
+            i.setDescription("");
+           _logger.info(i.getTitle());
+        }
+
         return sh;
       //  _repository.findByTitleOrDescription()
     }
