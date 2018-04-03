@@ -37,13 +37,6 @@ public class ShowsController {
             q = "%" + q + "%";
             sh = _repository.getFilteredTitle(q, pg);
         }
-        _logger.info("items found: " + sh.getTotalElements());
-        _logger.info("items size: " + sh.getContent().size());
-
-        for (ShowListItem i : sh.getContent()){
-            i.setDescription("");
-           _logger.info(i.getTitle());
-        }
 
         return sh;
       //  _repository.findByTitleOrDescription()
