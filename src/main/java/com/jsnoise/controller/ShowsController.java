@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.logging.Logger;
 
 @RestController
-//@RequestMapping("/api")
 @CrossOrigin(origins = "http://localhost:8081")
 public class ShowsController {
 
@@ -22,7 +21,6 @@ public class ShowsController {
     @Autowired
     private ShowJpaRepository _repository;
 
-   // @RequestMapping( value = "/api/showslist", method = RequestMethod.GET )
     @GetMapping(value = "/api/showslist")
     public Page<ShowListItem> showslist(@RequestParam( "page" ) int page, @RequestParam( name = "size", defaultValue = "20") int size,@RequestParam( name="q", defaultValue = "",required = false) String q) {
         Sort sort = new Sort(Sort.Direction.DESC, "publishDate");
@@ -39,10 +37,9 @@ public class ShowsController {
         }
 
         return sh;
-      //  _repository.findByTitleOrDescription()
     }
 
-    @RequestMapping(value = "/api/shows/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/api/shows/{id}")
     public ShowListItem get(@PathVariable Long id){
         return _repository.findShowById(id);
     }
