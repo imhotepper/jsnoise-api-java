@@ -28,12 +28,12 @@ public class ProducerController {
     }
 
    // @RequestMapping(value = "/api/producers", method = RequestMethod.POST)
-    @PostMapping(value = "/api/producers")
+    @PostMapping(value = "/api/admin/producers")
     public String registerProducer(@Valid @RequestBody Producer producer){
       _service.createAndSaveShows(producer);
       return producer.getName();
     }
-    @RequestMapping(value = "/api/producers", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/admin/producers", method = RequestMethod.GET)
     public List<ProducerListItem> getAll(){
         return _service.getAll();
     }

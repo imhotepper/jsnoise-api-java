@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 
 @Configuration
-public class MvcConfig {
+public class MainConfig {
 
     @Bean
     public EmbeddedServletContainerCustomizer notFoundCustomizer(){
@@ -21,4 +21,5 @@ public class MvcConfig {
             container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/"));
         }
     }
+
 }
