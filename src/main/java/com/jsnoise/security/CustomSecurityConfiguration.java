@@ -28,18 +28,15 @@ public class CustomSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-        System.out.println(_adminUser);
-        auth.inMemoryAuthentication().withUser("bill").password("bill").roles("ADMIN");
         auth.inMemoryAuthentication().withUser(_adminUser).password(_adminPassword).roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("tom").password("abc123").roles("USER");
+       // auth.inMemoryAuthentication().withUser("tom").password("abc123").roles("USER");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
 
-       // http.csrf().disable();
-        http
+                 http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
                 .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint())
