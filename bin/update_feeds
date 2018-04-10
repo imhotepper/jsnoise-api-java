@@ -1,5 +1,11 @@
 
-task :update_feed  do
+require 'uri'
+require 'net/http'
+
+
+
+desc "This task is called by the Heroku scheduler add-on"
+task :default => :environment  do
       puts 'start'
       uri = URI.parse("http://jsnoise.herokuapp.com/api/producers/update")
       response = Net::HTTP.get_response(uri)
