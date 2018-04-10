@@ -112,13 +112,17 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/bin</outputDirectory>
+                           <!-- <outputDirectory>${basedir}/bin</outputDirectory> -->
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+
                             <resources>
                                 <resource>
+                                    <targetPath>${basedir}/bin</targetPath>
                                     <directory>bin</directory>
                                     <filtering>true</filtering>
                                 </resource>
                             </resources>
+                            <encoding>UTF-8</encoding>
                         </configuration>
                     </execution>
                 </executions>
