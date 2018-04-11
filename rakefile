@@ -1,7 +1,7 @@
 
 require 'uri'
 require 'net/http'
-import 'bin/rake_tasks'
+import 'tasks/rake_tasks'
 
 
 task :default do
