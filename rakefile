@@ -1,12 +1,14 @@
 
 require 'uri'
 require 'net/http'
+import 'bin/rake_tasks'
 
-task :default do
-   puts 'start'
-         uri = URI.parse("http://jsnoise.herokuapp.com/api/producers/update")
-         response = Net::HTTP.get_response(uri)
-         puts response.inspect # this line not getting printed
 
-        puts 'end!'
-end
+#task :default do
+#   puts 'start'
+#         uri = URI.parse("http://jsnoise.herokuapp.com/api/producers/update")
+#         response = Net::HTTP.get_response(uri)
+#         puts response.inspect # this line not getting printed
+
+#        puts 'end!'
+#end
