@@ -25,4 +25,7 @@ public interface ShowJpaRepository extends JpaRepository<Show,Long> {
     @Query("select new com.jsnoise.dto.ShowListItem(s.id, p.id,s.title, s.description, s.mp3, p.name, s.publishDate) from Show s inner join s.producer p where p.id = :id ")
     Page<ShowListItem> findShowsByProducerId(@Param("id") long id, Pageable pageable);
 
+    @Query("select new com.jsnoise.dto.ShowListItem(s.id, p.id,s.title, s.description, s.mp3, p.name, s.publishDate) from Show s inner join s.producer p where p.id = :id and  LOWER(s.title) like LOWER(:q)  ")
+    Page<ShowListItem> findShowsByProducerIdFiltered(@Param("id") long id,@Param("q") String q, Pageable pageable);
+
 }

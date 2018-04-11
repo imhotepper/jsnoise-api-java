@@ -38,9 +38,13 @@ public class ProducerController {
         return _service.getAll();
     }
     @RequestMapping(value = "/api/producers/{id}/shows")
-    public Page<ShowListItem> get(@PathVariable Long id, @RequestParam( "page" ) int page, @RequestParam( name = "size", defaultValue = "20") int size){
-        Pageable pg  = new PageRequest(page, size);
-        return _repo.findShowsByProducerId(id,pg);
+    public Page<ShowListItem> get(@PathVariable Long id, @RequestParam( "page" ) int page, @RequestParam( name = "size", defaultValue = "20") int size, @RequestParam( name="q", defaultValue = "",required = false) String q){
+        Pageable pg  = new PageRequest(--page, size);
+        if (q.isEmpty())
+            return _repo.findShowsByProducerId(id,pg);
+
+        return  _repo.findShowsByProducerIdFiltered(id,"%"+q+"%",pg);
+
     }
 
     @RequestMapping(value = "/api/producers/update", method = RequestMethod.GET)
