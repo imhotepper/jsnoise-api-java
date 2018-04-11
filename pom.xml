@@ -124,12 +124,12 @@
 
                             <resources>
                                 <resource>
-                                    <targetPath>${basedir}/bin</targetPath>
-                                    <directory>bin</directory>
-                                    <filtering>true</filtering>
+                                    <targetPath>${basedir}/tasks</targetPath>
+                                    <directory>tasks</directory>
+                                   <!-- <filtering>true</filtering> -->
                                 </resource>
                             </resources>
-                            <encoding>UTF-8</encoding>
+                          <!--  <encoding>UTF-8</encoding> -->
                         </configuration>
                     </execution>
                 </executions>
