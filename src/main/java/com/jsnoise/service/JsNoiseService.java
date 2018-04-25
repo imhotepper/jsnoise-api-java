@@ -57,7 +57,8 @@ public class JsNoiseService {
         List<Show> shows = new ArrayList<>();
 
         for(Show s: possibleSows)
-            if(_showsRepo.findByLink(s.getLink()) == null) {
+//            if(_showsRepo.findByLink(s.getLink()) == null) {
+                if(_showsRepo.findByLinkAndTitle(s.getLink(), s.getTitle()) == null) {
                 s.setProducer(producer);
                 shows.add(s);
             }

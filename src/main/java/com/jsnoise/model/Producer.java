@@ -1,5 +1,6 @@
 package com.jsnoise.model;
 
+import lombok.Data;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -8,54 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 public class Producer {
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getWebsite() {
-        return website;
-    }
-
-    public void setWebsite(String website) {
-        this.website = website;
-    }
-
-    public String getFeedUrl() {
-        return feedUrl;
-    }
-
-    public void setFeedUrl(String feedUrl) {
-        this.feedUrl = feedUrl;
-    }
-
-    public boolean isBlocked() {
-        return isBlocked;
-    }
-
-    public void setBlocked(boolean blocked) {
-        isBlocked = blocked;
-    }
-
-    public List<Show> getShows() {
-        return shows;
-    }
-
-    public void setShows(List<Show> shows) {
-        this.shows = shows;
-    }
 
     public Producer(Long id, String name, String website, String feedUrl, boolean isBlocked) {
         this.id = id;

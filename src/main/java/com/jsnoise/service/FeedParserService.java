@@ -50,5 +50,4 @@ public class FeedParserService {
 
         return shows;
     }
-
 }

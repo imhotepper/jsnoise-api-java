@@ -12,6 +12,8 @@ import org.springframework.data.repository.query.Param;
 public interface ShowJpaRepository extends JpaRepository<Show,Long> {
     Show findByLink(String link);
 
+    Show findByLinkAndTitle(String link, String title);  
+
     //in both @Query("select new com.jsnoise.dto.ShowListItem(s.id, p.id, s.title, s.description, s.mp3, p.name, s.publishDate) from Show s inner join s.producer p where LOWER( s.title) like LOWER(:q) or LOWER( s.description) like LOWER(:q)    ")
     @Query("select new com.jsnoise.dto.ShowListItem(s.id, p.id, s.title, '', s.mp3, p.name, s.publishDate) from Show s inner join s.producer p where LOWER(s.title) like LOWER(:q) ")
     Page<ShowListItem> getFilteredTitle(@Param("q") String q, Pageable pageable);
