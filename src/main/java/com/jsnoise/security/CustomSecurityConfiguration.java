@@ -12,8 +12,9 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.stereotype.Component;
 
-
+@Component
 @Configuration
 @EnableWebSecurity
 public class CustomSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -27,24 +28,31 @@ public class CustomSecurityConfiguration extends WebSecurityConfigurerAdapter {
     String _adminPassword;
 
     @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication().withUser(_adminUser).password(_adminPassword).roles("ADMIN");
+    }
+    /*
+    @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         System.out.println(_adminUser);
         auth.inMemoryAuthentication().withUser("bill").password("bill").roles("ADMIN");
-        auth.inMemoryAuthentication().withUser(_adminUser).password(_adminPassword).roles("ADMIN");
+        auth.inMemoryAuthentication().withUser(_adminUser).password(_adminPassword);//.roles("ADMIN");
         auth.inMemoryAuthentication().withUser("tom").password("abc123").roles("USER");
     }
+*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
 
-       // http.csrf().disable();
-        http
+       http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/admin/**").hasRole("ADMIN")
-                .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint())
+                .antMatchers("/api/admin/**").authenticated()//.hasRole("ADMIN")
+                .and().httpBasic().authenticationEntryPoint(getBasicAuthEntryPoint())
+//                .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint())
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//We don't need sessions to be created.
     }
+
 
     @Bean
     public CustomBasicAuthenticationEntryPoint getBasicAuthEntryPoint() {
@@ -54,5 +62,7 @@ public class CustomSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
     }
+
+
 
 }
