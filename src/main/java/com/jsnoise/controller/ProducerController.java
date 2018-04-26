@@ -1,6 +1,7 @@
 package com.jsnoise.controller;
 
 
+import com.jsnoise.dto.ProducerCounts;
 import com.jsnoise.dto.ProducerListItem;
 import com.jsnoise.dto.ShowListItem;
 import com.jsnoise.model.Producer;
@@ -34,9 +35,11 @@ public class ProducerController {
       return producer.getName();
     }
     @RequestMapping(value = "/api/admin/producers", method = RequestMethod.GET)
-    public List<ProducerListItem> getAll(){
+    public List<ProducerCounts> getAll(){
+
         return _service.getAll();
     }
+
     @RequestMapping(value = "/api/producers/{id}/shows")
     public Page<ShowListItem> get(@PathVariable Long id, @RequestParam( "page" ) int page, @RequestParam( name = "size", defaultValue = "20") int size, @RequestParam( name="q", defaultValue = "",required = false) String q){
         Pageable pg  = new PageRequest(--page, size);

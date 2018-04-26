@@ -1,6 +1,7 @@
 package com.jsnoise.service;
 
 
+import com.jsnoise.dto.ProducerCounts;
 import com.jsnoise.dto.ProducerListItem;
 import com.jsnoise.model.Producer;
 import com.jsnoise.model.Show;
@@ -70,7 +71,7 @@ public class JsNoiseService {
 
     }
 
-    public List<ProducerListItem> getAll(){
-        return _producersRepo.getProducers();
+    public List<ProducerCounts> getAll(){
+        return _producersRepo.getProducersCount();//.getProducers();
     }
 }
