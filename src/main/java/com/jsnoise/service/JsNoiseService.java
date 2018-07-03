@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class JsNoiseService {
@@ -54,7 +55,9 @@ public class JsNoiseService {
     @Transactional
     private Integer updateShows(Producer producer){
 
-        List<Show> possibleSows = _parserService.getShows(producer.getFeedUrl());
+        List<Show> possibleSows = _parserService.getShows(producer.getFeedUrl()).stream()
+                .distinct()
+                .collect(Collectors.toList());
         List<Show> shows = new ArrayList<>();
 
         for(Show s: possibleSows)
