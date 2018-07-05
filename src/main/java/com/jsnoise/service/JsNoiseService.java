@@ -24,14 +24,14 @@ public class JsNoiseService {
     @Autowired
     private ShowJpaRepository _showsRepo;
 
-    @Autowired FeedParserService _parserService;
+    @Autowired
+    private FeedParserService _parserService;
 
     @Transactional
     public Producer createAndSaveShows(Producer producer){
         _producersRepo.saveAndFlush(producer);
 
         List<Show> shows = _parserService.getShows(producer.getFeedUrl());
-        System.out.println("Shows loaded: " + shows.size());
         producer.setShows(shows);
 
         for(Show s: shows)s.setProducer(producer);
@@ -44,7 +44,6 @@ public class JsNoiseService {
 
     public Long updateProducerShows(){
         List<Producer> producers =  _producersRepo.findAll();
-
         Long count = 0L;
         for(Producer p : producers)
             count += updateShows(p);
@@ -61,13 +60,12 @@ public class JsNoiseService {
         List<Show> shows = new ArrayList<>();
 
         for(Show s: possibleSows)
-//            if(_showsRepo.findByLink(s.getLink()) == null) {
-                if(_showsRepo.countByLinkAndTitle(s.getLink(), s.getTitle()) == 0) {
+            if(_showsRepo.countByLinkAndTitle(s.getLink(), s.getTitle()) == 0) {
                 s.setProducer(producer);
                 shows.add(s);
             }
 
-      List<Show> savedShows =  _showsRepo.save(shows);
+        List<Show> savedShows =  _showsRepo.save(shows);
         _showsRepo.flush();
 
         return savedShows.size();
@@ -75,6 +73,6 @@ public class JsNoiseService {
     }
 
     public List<ProducerCounts> getAll(){
-        return _producersRepo.getProducersCount();//.getProducers();
+        return _producersRepo.getProducersCount();
     }
 }

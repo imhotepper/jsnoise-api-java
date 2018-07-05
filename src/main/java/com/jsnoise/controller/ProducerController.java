@@ -28,7 +28,6 @@ public class ProducerController {
         _repo = repo;
     }
 
-   // @RequestMapping(value = "/api/producers", method = RequestMethod.POST)
     @PostMapping(value = "/api/admin/producers")
     public String registerProducer(@Valid @RequestBody Producer producer){
       _service.createAndSaveShows(producer);
@@ -36,7 +35,6 @@ public class ProducerController {
     }
     @RequestMapping(value = "/api/admin/producers", method = RequestMethod.GET)
     public List<ProducerCounts> getAll(){
-
         return _service.getAll();
     }
 
@@ -47,7 +45,6 @@ public class ProducerController {
             return _repo.findShowsByProducerId(id,pg);
 
         return  _repo.findShowsByProducerIdFiltered(id,"%"+q+"%",pg);
-
     }
 
     @RequestMapping(value = "/api/producers/update", method = RequestMethod.GET)

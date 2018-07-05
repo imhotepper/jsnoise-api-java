@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class FeedParserService {
+class FeedParserService {
 
-    public List<Show> getShows(String url){
+    List<Show> getShows(String url){
         List<Show> shows = new ArrayList<>();
 
         try {
@@ -26,17 +26,20 @@ public class FeedParserService {
             SyndFeed feed = input.build(new XmlReader(feedUrl));
 
             List<SyndEntry> entries = feed.getEntries();
+            Show item;
+            List<SyndEnclosure> enclosures;
+            String mp3;
 
             for (SyndEntry e : entries) {
-                Show item = new Show();
+                item = new Show();
                 item.setTitle(e.getTitle());
                 item.setLink( e.getLink());
                 item.setPublishDate(e.getPublishedDate());
                  item.setDescription(e.getDescription().getValue());
-                List<SyndEnclosure> enclosures = e.getEnclosures();
+                 enclosures= e.getEnclosures();
                 if (enclosures.size() >0){
-                    String mp3 = enclosures.get(0).getUrl();
-                    if (mp3.indexOf("mp3")  > -1 )
+                     mp3= enclosures.get(0).getUrl();
+                    if (mp3.contains("mp3"))
                         mp3 = mp3.substring(0,3+mp3.indexOf("mp3"));
 
                     item.setMp3( mp3);
@@ -45,7 +48,7 @@ public class FeedParserService {
             }
 
         }catch (Exception exp){
-            System.out.println( exp.getMessage());
+            exp.printStackTrace();
         }
 
         return shows;
