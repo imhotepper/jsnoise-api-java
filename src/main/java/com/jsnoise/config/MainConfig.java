@@ -15,11 +15,11 @@ public class MainConfig {
         return new NotFoundIndexTemplate();
     }
 
-    private static class NotFoundIndexTemplate implements EmbeddedServletContainerCustomizer {
+    private static class NotFoundIndexTemplate
+                     implements EmbeddedServletContainerCustomizer {
         @Override
         public void customize(ConfigurableEmbeddedServletContainer container) {
             container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/"));
         }
     }
-
 }

@@ -19,7 +19,6 @@ public class Producer {
         this.feedUrl = feedUrl;
         this.isBlocked = isBlocked;
     }
-
     public Producer(){};
 
     @Id
@@ -33,12 +32,9 @@ public class Producer {
     private String website;
 
     private String feedUrl;
-
     private boolean isBlocked;
 
     @OneToMany
     @JoinColumn(name = "producer_id")
     private List<Show> shows = new ArrayList<>();
-
-
 }

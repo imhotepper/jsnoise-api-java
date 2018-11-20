@@ -39,7 +39,9 @@ public class ProducerController {
     }
 
     @RequestMapping(value = "/api/producers/{id}/shows")
-    public Page<ShowListItem> get(@PathVariable Long id, @RequestParam( "page" ) int page, @RequestParam( name = "size", defaultValue = "20") int size, @RequestParam( name="q", defaultValue = "",required = false) String q){
+    public Page<ShowListItem> get(@PathVariable Long id, @RequestParam( "page" ) int page,
+                      @RequestParam( name = "size", defaultValue = "20") int size,
+                      @RequestParam( name="q", defaultValue = "",required = false) String q){
         Pageable pg  = new PageRequest(--page, size);
         if (q.isEmpty())
             return _repo.findShowsByProducerId(id,pg);

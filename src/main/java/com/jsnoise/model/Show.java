@@ -13,17 +13,15 @@ public class Show {
     @GeneratedValue
     private long id;
 
-    private String title;
-
     @Column(length = 500000)
     private String description;
 
+    private String title;
     private String mp3;
+    private String link;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date publishDate;
-
-    private String link;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Producer producer;

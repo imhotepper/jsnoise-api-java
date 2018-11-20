@@ -26,6 +26,8 @@ class FeedParserService {
             SyndFeed feed = input.build(new XmlReader(feedUrl));
 
             List<SyndEntry> entries = feed.getEntries();
+
+
             Show item;
             List<SyndEnclosure> enclosures;
             String mp3;

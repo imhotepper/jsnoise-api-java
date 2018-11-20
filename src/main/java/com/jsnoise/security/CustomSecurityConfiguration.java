@@ -19,40 +19,24 @@ import org.springframework.stereotype.Component;
 @EnableWebSecurity
 public class CustomSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private static String REALM = "jsnoise";
-
-    @Value("${admin_user}")
-    String _adminUser;
-
-    @Value("${admin_password}")
-    String _adminPassword;
+    @Value("${admin_user}") String _adminUser;
+    @Value("${admin_password}") String _adminPassword;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser(_adminUser).password(_adminPassword).roles("ADMIN");
+        auth.inMemoryAuthentication().withUser(_adminUser)
+                .password(_adminPassword).roles("ADMIN");
     }
-    /*
-    @Autowired
-    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-        System.out.println(_adminUser);
-        auth.inMemoryAuthentication().withUser("bill").password("bill").roles("ADMIN");
-        auth.inMemoryAuthentication().withUser(_adminUser).password(_adminPassword);//.roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("tom").password("abc123").roles("USER");
-    }
-*/
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-
        http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/api/admin/**").authenticated()//.hasRole("ADMIN")
-                .and().httpBasic().authenticationEntryPoint(getBasicAuthEntryPoint())
-//                .and().httpBasic().realmName(REALM).authenticationEntryPoint(getBasicAuthEntryPoint())
-                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);//We don't need sessions to be created.
+            .authorizeRequests()
+            .antMatchers("/api/admin/**").authenticated()
+            .and().httpBasic().authenticationEntryPoint(getBasicAuthEntryPoint())
+            .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
-
 
     @Bean
     public CustomBasicAuthenticationEntryPoint getBasicAuthEntryPoint() {

@@ -22,7 +22,10 @@ public class ShowsController {
     private ShowJpaRepository _repository;
 
     @GetMapping(value = "/api/showslist")
-    public Page<ShowListItem> showslist(@RequestParam( "page" ) int page, @RequestParam( name = "size", defaultValue = "20") int size,@RequestParam( name="q", defaultValue = "",required = false) String q) {
+    public Page<ShowListItem> showslist(@RequestParam( "page" ) int page,
+                @RequestParam( name = "size", defaultValue = "20") int size,
+                @RequestParam( name="q", defaultValue = "",required = false) String q) {
+
         Sort sort = new Sort(Sort.Direction.DESC, "publishDate");
         Pageable pg = new PageRequest(--page, size, sort);
 
@@ -30,7 +33,6 @@ public class ShowsController {
 
         Page<ShowListItem> sh;
         if (q.isEmpty()) sh = _repository.findAllShows(pg);
-
         else {
             q = "%" + q + "%";
             sh = _repository.getFilteredTitle(q, pg);
