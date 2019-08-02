@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-class FeedParserService {
+public class FeedParserService {
 
-    List<Show> getShows(String url){
+    public List<Show> getShows(String url){
         List<Show> shows = new ArrayList<>();
 
         try {
