@@ -6,8 +6,6 @@ import java.util.logging.Logger;
 
 import com.jsnoise.model.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import lombok.extern.java.Log;
 
 import  com.jsnoise.service.FeedParserService;
